@@ -9,7 +9,7 @@ st.session_state['people'] = [[str(uuid.uuid4()), 'banana','9'], [str(uuid.uuid4
 
 
 def populate_people():
-    st.header("People")
+    st.header("People In Your Community")
     # list of people in community + items willing to barter
     df = pd.DataFrame(st.session_state['people'], columns=['Seller', 'Commodity Selling','Quantity'])
     st.table(df)
@@ -52,8 +52,7 @@ def main():
         # if approved, add transaction to transactions table
         # update quantities of commodities
         req_form = st.form(key="req")
-        fname = req_form.text_input("First Name:")
-        lname = req_form.text_input("Last Name:")
+        seller = req_form.text_input("Seller Id:")
         quantity = req_form.text_input("Quantity:")
         item = req_form.text_input("Item:")
         # creating a submit button
