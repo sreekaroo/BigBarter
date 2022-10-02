@@ -5,13 +5,13 @@ import pandas as pd
 import numpy as np
 import uuid
 
-people = [['Aditya', 'banan'], ['Ad', 'apple']]
+people = [['Aditya', 'banana'], ['Ad', 'apple']]
 
 
 def populate_people():
     st.header("People")
     # list of people in community + items willing to barter
-    df = pd.DataFrame(people, columns=["col %d" % i for i in range(2)])
+    df = pd.DataFrame(people, columns=['Seller', 'Commodity Selling'])
     st.table(df)
 
 def handle_registration():
@@ -49,7 +49,7 @@ def main():
     )
 
     request = st.button("Make Request")
-
+    community = st.button("Join Community")
     if request:
         st.subheader("Requests")
         # display all requests with approve and reject button
@@ -65,6 +65,11 @@ def main():
 
         # send request information
         request = True
+    if community:
+        com_form = st.form(key="com")
+        com = com_form.text_input('Community:')
+        submit = com_form.form_submit_button("Submit")
+        community = True
 
     populate_people()
     option = st.sidebar.selectbox(
