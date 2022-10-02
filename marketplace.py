@@ -5,13 +5,13 @@ import pandas as pd
 import numpy as np
 import uuid
 
-people = [['Aditya', 'banana'], ['Ad', 'apple']]
+st.session_state['people'] = [[str(uuid.uuid4()), 'banana','9'], [str(uuid.uuid4()), 'apple','7'], [str(uuid.uuid4()),'eggs','3'],[str(uuid.uuid4()),'milk','2']]
 
 
 def populate_people():
     st.header("People")
     # list of people in community + items willing to barter
-    df = pd.DataFrame(people, columns=['Seller', 'Commodity Selling'])
+    df = pd.DataFrame(st.session_state['people'], columns=['Seller', 'Commodity Selling','Quantity'])
     st.table(df)
 
 def handle_registration():
@@ -27,15 +27,11 @@ def handle_registration():
         address = reg_form.text_area("Enter Address:")
         # creating a submit button
         submit = reg_form.form_submit_button("Submit")
-        st.session_state["first_name"] = fname
-        st.session_state["last_name"] = lname
         st.session_state["item"] = items
         st.session_state["quantity"] = quantity
 
     if submit:
-        people.append([st.session_state['first_name'],st.session_state['last_name']])
-        print(people)
-        st.session_state['people'] = people
+        st.session_state['people'].append([str(uuid.uuid4()),st.session_state['item'],st.session_state['quantity']])
         populate_people()
 
 
@@ -70,8 +66,6 @@ def main():
         com = com_form.text_input('Community:')
         submit = com_form.form_submit_button("Submit")
         community = True
-
-    populate_people()
     option = st.sidebar.selectbox(
         "Where next?", ("home", "registration", "transactions", "requests")
     )
