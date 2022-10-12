@@ -1,6 +1,6 @@
 # BigBarter
 
-A Dapp built during HackMIT for the Solana Challenge. Won 1st place for Solana Challenge
+A Dapp built during HackMIT for the Solana Challenge. Won 1st place for Solana Challenge.
 
 ## Project Idea description :
 
